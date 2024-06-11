@@ -14,17 +14,21 @@ Salah satu faktor yang mempengaruhi seseorang untuk menonton film adalah melihat
 # _Bussiness Understanding_
 
 ## _Problem Statement_
-- Model _Machine Learning_ apa yang cocok untuk menyelesaikan permasalahan tersebut?
+- Model _Machine Learning_ apa yang cocok untuk menyelesaikan permasalahan rekomendasi film berdasarkan genre?
 - Bagaimana cara menentukan hasil rekomendasi suatu model _Machine Learning_ dapat dikatakan baik?
 
 ## _Goals_
-- Model yang cocok untuk menyelesaikan masalah tersebut adalah model yang berbasis dengan konten atau biasa disebut _Content-Based Filtering_.
+- Model yang cocok untuk menyelesaikan masalah rekomendasi film berdasarkan genre adalah model yang berbasis dengan konten atau biasa disebut _Content-Based Filtering_.
 - Melakukan evaluasi terhadap metrik dari model _Machine Learning_ tersebut.
 
 # _Data Understanding_
 
 ## Sumber Dataset
 [Movie Recommender System Dataset](https://www.kaggle.com/datasets/gargmanas/movierecommenderdataset)
+
+## Jumlah Dataset
+- Dataset movies.csv berjumlah 2731 baris dan 3 kolom
+- Dataset ratings.csv berjumlah 100836 baris dan 4 kolom
 
 ## File Dataset
 - movies.csv variabelnya terdiri dari
@@ -37,6 +41,9 @@ Salah satu faktor yang mempengaruhi seseorang untuk menonton film adalah melihat
   - movieId: id film
   - rating: rating yang diberikan user
   - timestamp: waktu user memberikan rating
+
+## Jenis dan Ukuran
+Dataset berjenis zip dengan ukuran 866 kb
  
 ## _Exploratory Data Analysis - Univariate Analysis_
 - _Movies_
@@ -69,6 +76,10 @@ Berikut merupakan tahapan-tahapan dalam melakukan _data preparation_:
   Proses ini dilakukan dengan menggunakan fungsi _tolist()_ agar data lebih mudah diproses pada tahap pemodelan.
 
 # _Modeling_
+_Content-Based Filtering_ adalah salah satu metode yang digunakan dalam sistem rekomendasi untuk memberikan saran kepada pengguna berdasarkan analisis konten dari item yang diminati oleh pengguna. Metode algoritma ini memanfaatkan karakteristik atau fitur yang ada pada item untuk mengidentifikasi kesamaan dan memberikan rekomendasi yang relevan.
+
+Alasan menggunakan metode _Content-Based Filtering_ untuk masalah ini karena dapat memberikan rekomendasi yang baik bahkan untuk pengguna baru atau item baru yang belum memiliki interaksi dengan pengguna lain. Ini karena rekomendasi didasarkan pada konten dari item itu sendiri, bukan pada interaksi sebelumnya.
+
 Setelah data selesai disiapkan, proses selanjutnya adalah membuat model adapun tahap-tahapnya diantaranya sebagai berikut:
 
 - Melakukan Vektorisasi dengan TF-IDF
@@ -111,11 +122,11 @@ Seperti terlihat pada Tabel 2, model berhasil menampilkan rekomendasi film berda
 # _Evaluation_
 Karena model yang digunakan untuk proyek kali ini adalah _Content-Based Filtering_, maka metrik yang cocok untuk digunakan adalah _Precision_. Secara matematis dapat dirumuskan sebagai berikut:
 
-![precision rumus](https://github.com/lusiana02/MLRecommendationSystemFilmTitleBasedOnGenre/assets/123287899/abda87f9-a13a-485a-85cd-54c2503e7083)
+$$
+\text{precision} = \frac{\text{of our recommendations that are relevant}}{\text{of items we recommended}}
+$$
 
-Gambar 3 Rumus _precision_ sistem rekomendasi
-
-Berdasarkan hasil yang telah ditampilkan Tabel 3 pada bagian _Result_ dapat disimpulkan bahwa dari 10 judul film yang direkomendasikan, ada 10 film yang relevan oleh karena itu nilai _Precision_ dari model ini adalah 10/10 atau 100%.
+Berdasarkan hasil yang telah ditampilkan Tabel 2 pada bagian _Result_ dapat disimpulkan bahwa dari 10 judul film yang direkomendasikan, ada 10 film yang relevan oleh karena itu nilai _Precision_ dari model ini adalah 10/10 atau 100%.
 
 # _Conclusion_
 Setelah melalui proses yang panjang, mulai dari mempersiapkan dataset hingga melakukan evaluasi, akhirnya sistem rekomendasi dengan pendekatan _Machine Learning_ _Content-Based Filtering_ pun selesai dirancang dan hasilnya pun cukup memuaskan yaitu dari 10 judul film yang direkomendasikan, terdapat 10 film yang relevan dengan judul film yang diuji yang menandakan _precision_ dari model ini adalah 100%. Diharapkan dengan dirancangnya sistem rekomendasi ini, _traffic platform film streaming_ perusahaan dapat naik dengan signifikan.
